@@ -10,8 +10,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include <getopt.h>
-#include <iptables.h>
-#include <linux/netfilter/xt_service.h>
+#include <xtables.h>
+#include "xt_service.h"
 
 static void
 service_help(void)

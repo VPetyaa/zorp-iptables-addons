@@ -12,7 +12,7 @@
 
 #include <xtables.h>
 #include <linux/netfilter/x_tables.h>
-#include <linux/netfilter/xt_KZORP.h>
+#include "xt_KZORP.h"
 
 static const struct option kzorp_tg_opts[] = {
 	{ .name = "tproxy-mark", .has_arg = 1, .val = '1'},

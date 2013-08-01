@@ -7,12 +7,13 @@
  *         TOTH Laszlo Attila <panther@balabit.hu>
  */
 #include <stdio.h>
+#include <ctype.h>
 #include <netdb.h>
 #include <string.h>
 #include <stdlib.h>
 #include <getopt.h>
-#include <iptables.h>
-#include <linux/netfilter/xt_zone.h>
+#include <xtables.h>
+#include "xt_zone.h"
 
 static void zone_help_v0(void)
 {
