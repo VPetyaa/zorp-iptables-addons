@@ -1,0 +1,5 @@
+iptables-addons (1.0) zorp50; urgency=low
+
+  * Initial release.
+
+ -- Zorp Maintainers <devel@balabit.com>  Fri,  2 Aug 2013 10:44:47 +0200

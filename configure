@@ -2693,7 +2693,7 @@ MAKEINFO=${MAKEINFO-"${am_missing_run}makeinfo"}
 # in the wild :-(  We should find a proper way to deprecate it ...
 AMTAR='$${TAR-tar}'
 
-am__tar='$${TAR-tar} chf - "$$tardir"' am__untar='$${TAR-tar} xf -'
+am__tar='$${TAR-tar} chof - "$$tardir"' am__untar='$${TAR-tar} xf -'
 
 
 
