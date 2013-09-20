@@ -1,3 +1,9 @@
+iptables-addons (1.0-1) zorp50; urgency=low
+
+  * Fixed parameters printing
+
+ -- Zorp Maintainers <devel@balabit.com>  Fri,  20 Sep 2013 11:24:47 +0200
+
 iptables-addons (1.0) zorp50; urgency=low
 
   * Initial release.

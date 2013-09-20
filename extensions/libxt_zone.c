@@ -277,16 +277,16 @@ zone_print_v0(const void *ip, const struct xt_entry_match *match, int numeric)
 	struct ipt_zone_info *info = (struct ipt_zone_info *) match->data;
 
 	if (info->flags & IPT_ZONE_SRC)
-		fputs("source", stdout);
+		fputs(" source", stdout);
 	else
-		fputs("destination", stdout);
-	printf(" zone \"%s\" ", info->name);
+		fputs(" destination", stdout);
+	printf(" zone \"%s\"", info->name);
 
 	if (info->flags & IPT_ZONE_CHILDREN)
-		fputs("children ", stdout);
+		fputs(" children", stdout);
 
 	if (info->flags & IPT_ZONE_UMBRELLA)
-		fputs("umbrella ", stdout);
+		fputs(" umbrella", stdout);
 }
 
 static void
@@ -296,21 +296,21 @@ zone_print_v1(const void *ip, const struct xt_entry_match *match, int numeric)
 	int i;
 
 	if (info->flags & IPT_ZONE_SRC)
-		fputs("source", stdout);
+		fputs(" source", stdout);
 	else
-		fputs("destination", stdout);
+		fputs(" destination", stdout);
 	printf(" zones \"");
 
 	for (i = 0; i!=info->count; ++i)
 		printf ("%s%s", i ? "," : "", info->names[i]);
 
-	printf("\" ");
+	printf("\"");
 
 	if (info->flags & IPT_ZONE_CHILDREN)
-		fputs("children ", stdout);
+		fputs(" children", stdout);
 
 	if (info->flags & IPT_ZONE_UMBRELLA)
-		fputs("umbrella ", stdout);
+		fputs(" umbrella", stdout);
 }
 
 static void
@@ -319,16 +319,16 @@ zone_save_v0(const void *ip, const struct xt_entry_match *match)
 	struct ipt_zone_info *info = (struct ipt_zone_info *) match->data;
 
 	if (info->flags & IPT_ZONE_SRC)
-		fputs("--src-zone ", stdout);
+		fputs(" --src-zone", stdout);
 	else
-		fputs("--dst-zone ", stdout);
-	printf("\"%s\" ", info->name);
+		fputs(" --dst-zone", stdout);
+	printf(" \"%s\"", info->name);
 
 	if (info->flags & IPT_ZONE_CHILDREN)
-		fputs("--children ", stdout);
+		fputs(" --children", stdout);
 
 	if (info->flags & IPT_ZONE_UMBRELLA)
-		fputs("--umbrella ", stdout);
+		fputs(" --umbrella", stdout);
 }
 
 static void
@@ -338,20 +338,20 @@ zone_save_v1(const void *ip, const struct xt_entry_match *match)
 	int i;
 
 	if (info->flags & IPT_ZONE_SRC)
-		fputs("--szones ", stdout);
+		fputs(" --szones", stdout);
 	else
-		fputs("--dzones ", stdout);
+		fputs(" --dzones", stdout);
 
-	printf("\"");
+	printf(" \"");
 	for (i = 0; i!=info->count; ++i)
 		printf ("%s%s", i ? "," : "", info->names[i]);
-	printf("\" ");
+	printf("\"");
 
 	if (info->flags & IPT_ZONE_CHILDREN)
-		fputs("--children ", stdout);
+		fputs(" --children", stdout);
 
 	if (info->flags & IPT_ZONE_UMBRELLA)
-		fputs("--umbrella ", stdout);
+		fputs(" --umbrella", stdout);
 }
 
 static struct xtables_match zone_match_v0 = {

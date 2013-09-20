@@ -7,10 +7,10 @@ Build-Depends: iptables-dev, debhelper (>= 7), build-essential, devscripts
 
 Package: iptables-zorp-addons
 Architecture: any
-Depends: iptables, debconf
+Depends: ${shlibs:Depends}, iptables, debconf
 Description: Iptables addons for zone and service matches.
 
 Package: iptables-kzorp-addon
 Architecture: any
-Depends: iptables, debconf
+Depends: ${shlibs:Depends}, iptables, debconf
 Description: Iptables addon for Kzorp target

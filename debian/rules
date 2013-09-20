@@ -58,7 +58,7 @@ binary-indep: build install
 #	dh_installinfo -i
 #	dh_installchangelogs -i ChangeLog ChangeLog.0
 #	dh_link -i
-#	dh_strip -i
+	dh_strip -i
 	dh_compress -i
 	dh_fixperms -i
 #	# You may want to make some executables suid here.
@@ -66,7 +66,7 @@ binary-indep: build install
 #	dh_makeshlibs -i
 #	dh_installdeb -i
 #	dh_perl -i
-#	dh_shlibdeps -i
+	dh_shlibdeps -i
 	dh_gencontrol -i
 	dh_md5sums -i
 	dh_builddeb -i
@@ -89,7 +89,7 @@ binary-arch: build install
 #	dh_undocumented -a
 #	dh_installchangelogs -a
 	dh_link -a
-#	dh_strip -pzms-engine --dbg-package=zms-engine-dbg
+	dh_strip -a
 	dh_compress -a
 	dh_fixperms -a
 	# You may want to make some executables suid here.
@@ -97,7 +97,7 @@ binary-arch: build install
 #	dh_makeshlibs -a
 	dh_installdeb -a
 #	dh_perl -a
-#	dh_shlibdeps -a
+	dh_shlibdeps -a
 	dh_gencontrol -a
 	dh_md5sums -a
 	dh_builddeb -a
