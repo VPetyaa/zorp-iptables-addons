@@ -28,5 +28,5 @@ deploy:
   on:
     repo: balabit/zorp-iptables-addons
     branch: travis
-    tags: false
+    tags: true
     all_branches: true
