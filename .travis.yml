@@ -1,7 +1,6 @@
 language: c
 compiler:
   - gcc
-  - clang
 branches:
   only:
   - travis
@@ -16,14 +15,15 @@ script:
   - autoreconf -i
   - ./configure
   - make
+before_deploy:
   - dpkg-buildpackage -S
 deploy:
   provider: releases
   api_key:
     secure: rOgy7DdkMCHxJgKzzDk+s6otFJ4jjglMgHRyTgOF/XCq0DBkvJ8ef2dAFIAG1+wvB44P97BYzSnvGEohDviLYNpLXPWMx1XGG9SU8qLcjgFh3KLcWP1sMVTdcng/bU1b8qHJHRXJ/SVhVrEvWGD3ZXfr6cyv2hjPWTP1GClK8Ys=
   file:
-    - '../iptables-addons_1.0-1.dsc'
-    - '../iptables-addons_1.0-1.tar.gz'
+    - "../iptables-addons_1.0-1.dsc"
+    - "../iptables-addons_1.0-1.tar.gz"
   on:
     repo: balabit/zorp-iptables-addons
     branch: travis
