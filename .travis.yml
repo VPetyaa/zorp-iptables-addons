@@ -24,6 +24,8 @@ deploy:
   file:
     - "../iptables-addons_1.0-1.dsc"
     - "../iptables-addons_1.0-1.tar.gz"
+  skip_cleanup: true
   on:
     repo: balabit/zorp-iptables-addons
-    branch: travis
+    tags: true
+    all_branches: true
