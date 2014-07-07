@@ -27,5 +27,5 @@ deploy:
   skip_cleanup: true
   on:
     repo: balabit/zorp-iptables-addons
-    tags: true
+    branch: travis
     all_branches: true
