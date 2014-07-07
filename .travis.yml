@@ -1,10 +1,10 @@
 language: c
 compiler:
- - gcc
- - clang
+  - gcc
+  - clang
 branches:
   only:
-    - travis
+  - travis
 before_install:
   - wget  -qO - http://download.opensuse.org/repositories/security:/Zorp/xUbuntu_12.04/Release.key | sudo apt-key add -
   - sudo apt-get install -qq python-software-properties
@@ -18,3 +18,11 @@ script:
   - make
 after_success:
   - dpkg-buildpackage -S
+deploy:
+  provider: releases
+  api_key:
+    secure: rOgy7DdkMCHxJgKzzDk+s6otFJ4jjglMgHRyTgOF/XCq0DBkvJ8ef2dAFIAG1+wvB44P97BYzSnvGEohDviLYNpLXPWMx1XGG9SU8qLcjgFh3KLcWP1sMVTdcng/bU1b8qHJHRXJ/SVhVrEvWGD3ZXfr6cyv2hjPWTP1GClK8Ys=
+  file: ''
+  on:
+    repo: balabit/zorp-iptables-addons
+    branch: travis
