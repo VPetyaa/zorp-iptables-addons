@@ -1,32 +1,40 @@
 language: c
 compiler:
   - gcc
-branches:
-  only:
-  - travis
+
 before_install:
-  - wget  -qO - http://download.opensuse.org/repositories/security:/Zorp/xUbuntu_12.04/Release.key | sudo apt-key add -
-  - sudo apt-get install -qq python-software-properties
-  - sudo add-apt-repository -y ppa:dns/gnu
+  - echo "deb http://download.opensuse.org/repositories/home:/VPetya:/zorp/xUbuntu_12.04/ ./" | sudo tee -a /etc/apt/sources.list
+  - sudo sh -c "echo 'deb http://download.opensuse.org/repositories/openSUSE:/Tools/xUbuntu_12.04/ /' >> /etc/apt/sources.list.d/osc.list"
+  - wget -qO - http://download.opensuse.org/repositories/home:/VPetya:/zorp/xUbuntu_12.04/Release.key | sudo apt-key add -
+  - wget -qO - http://download.opensuse.org/repositories/openSUSE:Tools/xUbuntu_12.04/Release.key | sudo apt-key add -
   - sudo apt-get update -qq
+  - sudo apt-get install libboost-test-dev
+  - wget http://cz.archive.ubuntu.com/ubuntu/pool/main/a/automake/automake1.4_1.4-p6-13.1_all.deb
+  - wget http://cz.archive.ubuntu.com/ubuntu/pool/main/a/autoconf/autoconf_2.69-6_all.deb
+  - sudo dpkg -i autoconf_2.69-6_all.deb
+  - sudo dpkg -i automake1.4_1.4-p6-13.1_all.deb
+  - sudo apt-get update -qq
+  - echo -e "" | sudo apt-get install osc
+
 script:
   - sudo apt-get install -qq devscripts equivs
   - sudo mk-build-deps -i
   - autoreconf -i
   - ./configure
   - make
-before_deploy:
+
+after_success:
   - dpkg-buildpackage -S
-deploy:
-  provider: releases
-  api_key:
-    secure: rOgy7DdkMCHxJgKzzDk+s6otFJ4jjglMgHRyTgOF/XCq0DBkvJ8ef2dAFIAG1+wvB44P97BYzSnvGEohDviLYNpLXPWMx1XGG9SU8qLcjgFh3KLcWP1sMVTdcng/bU1b8qHJHRXJ/SVhVrEvWGD3ZXfr6cyv2hjPWTP1GClK8Ys=
-  file:
-    - "../iptables-addons_1.0-1.dsc"
-    - "../iptables-addons_1.0-1.tar.gz"
-  skip_cleanup: true
-  on:
-    repo: balabit/zorp-iptables-addons
-    branch: travis
-    tags: true
-    all_branches: true
+  - echo -e "addFilter(\".*\") \n" > ../zorp-iptables-addons.rpmlintrc
+  - cp rpm/* ../
+  - echo -e "[general]\napiurl = https://api.opensuse.org\n[https://api.opensuse.org]\nuser = VPetya\npass = $PASS\n" > ~/.oscrc
+  - osc co home:VPetya:travis
+  - rm home:VPetya:travis/zorp-iptables-addons/*
+  - mv ../*.* home:VPetya:travis/zorp-iptables-addons
+  - cd home:VPetya:travis/zorp-iptables-addons
+  - osc addremove
+  - osc commit -m "TRAVIS"
+
+env:
+  global:
+    secure: clHXFWvTEqxxU3Ct8u3f3anzaLE+Jns4alMEs0ZxmOMCNFnff/zQ4ouht380afcWrRmo09+kLJc8PjmYxS1DLh2qIFO/lZf1ORf4HEC0utbrt8diH4fJc+LuWk8kkrFJZfbV21gdQUvJxO8MyQnuwLzlZkE98km49oFNujhSGGk=
