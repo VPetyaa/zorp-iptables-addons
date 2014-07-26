@@ -13,6 +13,7 @@ BuildRequires:      autoconf
 BuildRequires:      gcc-c++
 BuildRequires:      python
 BuildRequires:      libtool
+BuildRequires:      pkg-config
 
 %if 0%{?fedora} || 0%{?centos}
 BuildRequires:		iptables-devel

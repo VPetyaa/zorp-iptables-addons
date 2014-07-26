@@ -17,6 +17,8 @@ CCLD           := ${CC}
 CFLAGS         := @CFLAGS@
 LDFLAGS        := @LDFLAGS@
 
+CFLAGS += $$($(PKG_CONFIG) xtables --cflags)
+
 ifeq (${V},)
 AM_LIBTOOL_SILENT = --silent
 AM_VERBOSE_CC     = @echo "  CC      " $@;
