@@ -7,14 +7,12 @@ Source0:		iptables-addons_%{version}-1.tar.gz
 Summary:		BalaBit Zorp blablabla
 License:		GPL-2.0
 Group:			System/Daemons
-BuildRequires:		libcap-devel
-BuildRequires:		glib2-devel
-BuildRequires:		zlib-devel
-#BuildRequires:		debhelper
 BuildRequires:		iptables
-
-#BuildRequires:		devscripts
-#BuildRequires:		devel_basis
+BuildRequires:      automake
+BuildRequires:      autoconf
+BuildRequires:      gcc-c++
+BuildRequires:      python
+BuildRequires:      libtool
 
 %if 0%{?fedora} || 0%{?centos}
 BuildRequires:		iptables-devel
@@ -46,6 +44,7 @@ This package provides header files for libzorpll
 # %patch0 -p1
 
 %build
+autoreconf -i
 %configure --disable-werror --enable-debug
 
 %install
