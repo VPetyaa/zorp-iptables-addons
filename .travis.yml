@@ -28,10 +28,10 @@ after_success:
   - echo -e "addFilter(\".*\") \n" > ../zorp-iptables-addons.rpmlintrc
   - cp rpm/* ../
   - echo -e "[general]\napiurl = https://api.opensuse.org\n[https://api.opensuse.org]\nuser = VPetya\npass = $PASS\n" > ~/.oscrc
-  - osc co home:VPetya:travis
-  - rm home:VPetya:travis/zorp-iptables-addons/*
-  - mv ../*.* home:VPetya:travis/zorp-iptables-addons
-  - cd home:VPetya:travis/zorp-iptables-addons
+  - osc co security:Zorp:LBaaS
+  - rm security:Zorp:LBaaS/zorp-iptables-addons/*
+  - mv ../*.* security:Zorp:LBaaS/zorp-iptables-addons
+  - cd security:Zorp:LBaaS/zorp-iptables-addons
   - osc addremove
   - osc commit -m "TRAVIS"
 
