@@ -15,7 +15,7 @@ BuildRequires:      python
 BuildRequires:      libtool
 BuildRequires:      pkg-config
 
-%if 0%{?fedora} || 0%{?centos}
+%if 0%{?fedora} || 0%{?centos} || 0%{?suse_version} == 1110
 BuildRequires:		iptables-devel
 %else
 BuildRequires:		libxtables-devel
